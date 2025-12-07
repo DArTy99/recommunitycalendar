@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BULK COMMUNITY EVENTS Calendar</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+      #calendar-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        background-color: white;
+        overflow: hidden;
+      }
+      #loading-spinner {
+        text-align: center;
+        padding: 20px;
+      }
+      .button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px;
+        background-color: #4285f4;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+      
+      /* Media query for small screens */
+      @media (max-width: 600px) {
+        body {
+          padding: 0;
+        }
+        #calendar-container {
+          border-radius: 0;
+          box-shadow: none;
+        }
+        .button {
+          margin: 20px 0;
+          border-radius: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calendar-container">
+      <div id="loading-spinner">Loading calendar...</div>
+      <iframe
+        id="calendar-iframe"
+        src="https://calendar.google.com/calendar/embed?src=3a394a4f956a67aa665033ea8dedb59667e428221d8b1306b4c4dba06cc51e53%40group.calendar.google.com&ctz=Europe%2FKiev"
+        style="border: 0; width: 100%; height: 100vh;"
+        frameborder="0"
+        scrolling="no"
+        onload="document.getElementById('loading-spinner').style.display='none';"
+      ></iframe>
+    </div>
+    <a
+      href="https://calendar.google.com/calendar/embed?src=3a394a4f956a67aa665033ea8dedb59667e428221d8b1306b4c4dba06cc51e53%40group.calendar.google.com&ctz=Europe%2FKiev"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="button"
+      >Add to My Calendar</a
+    >
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var iframe = document.getElementById("calendar-iframe");
+        var userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        var src = iframe.src;
+        iframe.src = src + "&ctz=" + encodeURIComponent(userTimeZone);
+      });
+    </script>
+  </body>
+</html>
